@@ -4,6 +4,8 @@ fpath=(
 )
 autoload -U $(echo ~/.zsh/functions/*(:t))
 
+export PATH=$HOME/local/bin:$PATH
+
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 autoload -U colors
@@ -30,6 +32,12 @@ SAVEHIST=100000
 
 # editor
 export EDITOR=vim
+# key bind like emacs
+bindkey -e
+
+# e.g. /etc -> cd /etc
+setopt auto_cd
+setopt auto_pushd
 
 # config for pip
 export PIP_DOWNLOAD_CACHE=${HOME}/.pip_cache
