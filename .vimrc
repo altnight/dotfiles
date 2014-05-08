@@ -281,7 +281,7 @@ set encoding=utf-8
 
 " set indent to new line
 " set autoindent
-" TODO:
+"
 set browsedir=buffer
 " use clipboard
 " required: vim configure +clipboard
@@ -296,7 +296,7 @@ set nobackup
 set nowritebackup
 " use soft tab(don't use hard tab)
 set expandtab
-" 変更中のファイルでも、保存しないで他のファイルを表示
+"
 set hidden
 " use incsearch
 set incsearch
@@ -308,15 +308,15 @@ set listchars=tab:>\
 set number
 " highlight closing parenthesis
 set showmatch
-" 検索時に大文字を含んでいたら大/小を区別
+" devite smartcase in search
 set smartcase
 " intelligent indent
 set smartindent
 " intelligent indent
 set smarttab
-" カーソルを行頭、行末で止まらないようにする
+" no stop cursor in startswith, endswith
 set whichwrap=b,s,h,l,<,>,[,]
-" 検索をファイルの先頭へループしない
+" no loop in search
 set nowrapscan
 " highlight
 set hlsearch
