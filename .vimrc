@@ -15,9 +15,82 @@ if $TMUX == ''
     set clipboard+=unnamed
 endif
 
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
+" =================================================
+"
+" =================================================
+syntax on
+filetype plugin on
+set encoding=utf-8
+
+" set indent to new line
+" set autoindent
+"
+set browsedir=buffer
+" use clipboard
+" required: vim configure +clipboard
+set clipboard=unnamed
+" complitation command mode
+set nocompatible
+" complitation command mode
+set wildmode=longest:full,full
+" don't make swapfile
+set noswapfile
+set nobackup
+set nowritebackup
+" use soft tab(don't use hard tab)
+set expandtab
+"
+set hidden
+" use incsearch
+set incsearch
+" display unlook char
+set list
+" display tab(don't display eol)
+set listchars=tab:>\
+" line number
+set number
+" highlight closing parenthesis
+set showmatch
+" devite smartcase in search
+set smartcase
+" intelligent indent
+set smartindent
+" intelligent indent
+set smarttab
+" no stop cursor in startswith, endswith
+set whichwrap=b,s,h,l,<,>,[,]
+" no loop in search
+set nowrapscan
+" highlight
+set hlsearch
+
+" escape highlight (command: esc, esc)
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" trip eol whitespace
+autocmd BufWritePre * :%s/\s\+$//ge
+
+" move buffer (command: w)
+nnoremap <silent><Tab> <C-w>w
+
+" resize buffer (command: > or <)
+nnoremap <silent>> <C-w>>
+nnoremap <silent>< <C-w><
+"
+" open tab (command: M)
+nnoremap <silent>M :<C-u>:tabnew<CR>
+" move tab (command: m)
+nnoremap <silent>m :<C-u>:tabnext<CR>
+" open current buffer on new tab
+nnoremap <silent>,m :<C-u>:tab split<CR>
+
+" whitespace, if input tab
+autocmd FileType * set tabstop=2 shiftwidth=2
+autocmd FileType javascript set tabstop=2 shiftwidth=2
+autocmd FileType html set tabstop=2 shiftwidth=2
+autocmd FileType python set tabstop=4 shiftwidth=4
+autocmd FileType coffee set tabstop=4 shiftwidth=4
+autocmd FileType sass set tabstop=4 shiftwidth=4
 
 " =================================================
 " complitation
@@ -228,15 +301,12 @@ NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 " make tmp file (command :JunkfileOpen)
 NeoBundle 'git://github.com/Shougo/junkfile.vim.git'
 " let g:junkfile#directory=path/to/local/.vim_junk"
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
 
 " =================================================
 " colorscheme
 " =================================================
 " molokai
-NeoBundle 'molokai'
+NeoBundle 'tomasr/molokai'
 " pyte
 NeoBundle 'therubymug/vim-pyte'
 " solarized
@@ -259,12 +329,6 @@ let g:airline_theme="landscape"
 " display status line default
 set laststatus=2
 
-" set colors for indnet
-NeoBundle "git://github.com/nathanaelkane/vim-indent-guides.git"
-
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 1
-
 " highlight current line
 set cursorline
 " under line
@@ -272,79 +336,6 @@ set cursorline
 
 filetype plugin indent on
 
-" =================================================
-"
-" =================================================
-syntax on
-filetype plugin on
-set encoding=utf-8
-
-" set indent to new line
-" set autoindent
-"
-set browsedir=buffer
-" use clipboard
-" required: vim configure +clipboard
-set clipboard=unnamed
-" complitation command mode
-set nocompatible
-" complitation command mode
-set wildmode=longest:full,full
-" don't make swapfile
-set noswapfile
-set nobackup
-set nowritebackup
-" use soft tab(don't use hard tab)
-set expandtab
-"
-set hidden
-" use incsearch
-set incsearch
-" display unlook char
-set list
-" display tab(don't display eol)
-set listchars=tab:>\
-" line number
-set number
-" highlight closing parenthesis
-set showmatch
-" devite smartcase in search
-set smartcase
-" intelligent indent
-set smartindent
-" intelligent indent
-set smarttab
-" no stop cursor in startswith, endswith
-set whichwrap=b,s,h,l,<,>,[,]
-" no loop in search
-set nowrapscan
-" highlight
-set hlsearch
-
-" escape highlight (command: esc, esc)
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
-" trip eol whitespace
-autocmd BufWritePre * :%s/\s\+$//ge
-
-" move buffer (command: w)
-nnoremap <silent><Tab> <C-w>w
-
-" resize buffer (command: > or <)
-nnoremap <silent>> <C-w>>
-nnoremap <silent>< <C-w><
-"
-" open tab (command: M)
-nnoremap <silent>M :<C-u>:tabnew<CR>
-" move tab (command: m)
-nnoremap <silent>m :<C-u>:tabnext<CR>
-" open current buffer on new tab
-nnoremap <silent>,m :<C-u>:tab split<CR>
-
-" whitespace, if input tab
-autocmd FileType * set tabstop=2 shiftwidth=2
-autocmd FileType javascript set tabstop=2 shiftwidth=2
-autocmd FileType html set tabstop=2 shiftwidth=2
-autocmd FileType python set tabstop=4 shiftwidth=4
-autocmd FileType coffee set tabstop=4 shiftwidth=4
-autocmd FileType sass set tabstop=4 shiftwidth=4
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
