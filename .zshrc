@@ -113,3 +113,9 @@ function crontab() {
 
 autoload -U compinit
 compinit
+
+# snippets
+source $HOME/.zsh/functions/snippets.sh
+
+# percol
+export PATH=$HOME/.zsh/percol/bin/:$PATH
