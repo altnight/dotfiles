@@ -119,3 +119,7 @@ source $HOME/.zsh/functions/snippets.sh
 
 # percol
 export PATH=$HOME/.zsh/percol/bin/:$PATH
+
+# zaw
+source $HOME/.zsh/zaw/zaw.zsh
+bindkey '^R' zaw-history
