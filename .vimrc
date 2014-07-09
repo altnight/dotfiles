@@ -235,11 +235,11 @@ NeoBundle 'git://github.com/Shougo/unite.vim.git'
 " start input mode
 " let g:unite_enable_start_insert=1
 " buffer list
-nnoremap <silent> fb :<C-u>Unite buffer<CR>
+nnoremap <silent> fb :<C-u>Unite buffer -start-insert<CR>
 " file list
 nnoremap <silent> ff :<C-u>UniteWithBufferDir -buffer-name=dotfiles file<CR>
 " recent file list
-nnoremap <silent> fm :<C-u>Unite file_mru<CR>
+nnoremap <silent> fm :<C-u>Unite file_mru -start-insert<CR>
 " like ctrips
 nnoremap <silent> fa :<C-u>execute
       \ 'Unite'
