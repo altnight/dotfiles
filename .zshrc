@@ -102,7 +102,7 @@ function crontab() {
   command crontab "$@"
 }
 
-my=( $HOME/dotfiles/.zshrc.alias $HOME/dotfiles/.zshrc.local $HOME/.zsh/my/peco.zsh $HOME/.zsh/my/snippets.sh)
+my=( $HOME/dotfiles/.zshrc.alias $HOME/.zshrc.local $HOME/.zsh/my/peco.zsh $HOME/.zsh/my/snippets.sh)
 
 for file in ${my[@]}
   do
