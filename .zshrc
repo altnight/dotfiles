@@ -111,15 +111,11 @@ function crontab() {
 # autojump
 [ -f ~/.autojump/etc/profile.d/autojump.zsh ] && source ~/.autojump/etc/profile.d/autojump.zsh
 
+# peco
+[ -f ~/.zsh/my/peco.zsh ] && source ~/.zsh/my/peco.zsh
+
 autoload -U compinit
 compinit
 
 # snippets
-source $HOME/.zsh/functions/snippets.sh
-
-# percol
-export PATH=$HOME/.zsh/percol/bin/:$PATH
-
-# zaw
-source $HOME/.zsh/zaw/zaw.zsh
-bindkey '^R' zaw-history
+source $HOME/.zsh/my/snippets.sh
