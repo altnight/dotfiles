@@ -108,9 +108,6 @@ function crontab() {
 # load local config
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# autojump
-[ -f ~/.autojump/etc/profile.d/autojump.zsh ] && source ~/.autojump/etc/profile.d/autojump.zsh
-
 # peco
 [ -f ~/.zsh/my/peco.zsh ] && source ~/.zsh/my/peco.zsh
 
