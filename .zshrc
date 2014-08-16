@@ -106,7 +106,6 @@ my=( $HOME/dotfiles/.zshrc.alias $HOME/dotfiles/.zshrc.local $HOME/.zsh/my/peco.
 
 for file in ${my[@]}
   do
-    echo _file
     [ -f $file ] && source $file
   done
 
