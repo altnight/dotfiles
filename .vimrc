@@ -255,6 +255,10 @@ nnoremap <silent> fg  :<C-u>
       \ -buffer-name=search-buffer
       \ -start-insert<CR>
 
+NeoBundle "tsukkee/unite-tag.git"
+" tag
+nnoremap <silent> fj :<C-u>Unite tag -start-insert<CR>
+
 " unite grep(current cursor word)
 "nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " call result recent unite grep word
