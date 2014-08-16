@@ -249,8 +249,12 @@ nnoremap <silent> fa :<C-u>execute
       \ 'file_rec:!:'.fnameescape(expand('%:p:h'))
       \ <CR>
 
-" unite grep
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+" grep
+nnoremap <silent> fg  :<C-u>
+      \ Unite grep:.
+      \ -buffer-name=search-buffer
+      \ -start-insert<CR>
+
 " unite grep(current cursor word)
 "nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " call result recent unite grep word
