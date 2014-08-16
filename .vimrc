@@ -310,6 +310,10 @@ NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 NeoBundle 'git://github.com/Shougo/junkfile.vim.git'
 " let g:junkfile#directory=path/to/local/.vim_junk"
 
+" display tag
+NeoBundle 'majutsushi/tagbar.git'
+nmap <C-l> :TagbarToggle<CR>
+
 " =================================================
 " colorscheme
 " =================================================
