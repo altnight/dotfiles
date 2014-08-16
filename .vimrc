@@ -319,7 +319,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 " 256 colors
 set t_Co=256
 " molocak, pyte, peachpuff
-" colorscheme molokai, pyte, peachpuff, hybrid-light
+colorscheme molokai
 " configure in .vimrc.local
 
 " status line
