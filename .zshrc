@@ -2,7 +2,7 @@ fpath=(
   $HOME/.zsh/*(/N)
   $fpath
 )
-autoload -U $(echo ~/.zsh/functions/*(:t))
+# autoload -U $(echo ~/.zsh/functions/*(:t))
 
 export PATH=$HOME/local/bin:$PATH
 
@@ -102,17 +102,13 @@ function crontab() {
   command crontab "$@"
 }
 
-# load alias
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+my=( $HOME/dotfiles/.zshrc.alias $HOME/dotfiles/.zshrc.local $HOME/.zsh/my/peco.zsh $HOME/.zsh/my/snippets.sh)
 
-# load local config
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# peco
-[ -f ~/.zsh/my/peco.zsh ] && source ~/.zsh/my/peco.zsh
+for file in ${my[@]}
+  do
+    echo _file
+    [ -f $file ] && source $file
+  done
 
 autoload -U compinit
 compinit
-
-# snippets
-source $HOME/.zsh/my/snippets.sh
