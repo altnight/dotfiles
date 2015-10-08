@@ -113,7 +113,7 @@ autoload -U compinit
 compinit
 
 # snippets
-source $HOME/.zsh/functions/snippets.sh
+# source $HOME/.zsh/functions/snippets.sh
 
 # peco history
 function peco-select-history() {
