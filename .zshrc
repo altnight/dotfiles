@@ -19,7 +19,7 @@ precmd() {
     psvar[1]=$vcs_info_msg_0_
 }
 PROMPT="%{$fg[cyan]%}[%n@%m %~%{$fg[yellow]%}%1v %{$fg[cyan]%}]%{$reset_color%} "
-RPROMPT="[%D{%Y-%m-%d %H:%M:%S}]"
+#RPROMPT="[%D{%Y-%m-%d %H:%M:%S}]"
 
 # LANG
 export LANG=ja_JP.UTF-8
