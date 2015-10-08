@@ -1,12 +1,14 @@
 [ui]
 # username = xxx <xxx@yyy.com>
-# style = ~/dotfiles/hg_log_format.tmpl
 
 [extensions]
 color =
 graphlog =
 pager =
 record =
+mercurial_keyring =
+strip =
+histedit =
 
 [color]
 status.modified = magenta bold
