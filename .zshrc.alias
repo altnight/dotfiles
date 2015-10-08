@@ -21,21 +21,10 @@ esac
 
 alias le="less"
 alias c="cd .."
-alias l="ls"
-alias la='ls -A'
-alias ll='ls -l'
 alias s='sudo'
-alias so='source'
-
-alias hal='sudo shutdown -h now'
 
 alias tarx='tar xzvf'
 alias tarc='tar czvf'
-
 alias ta='tmux attach'
-
-alias hgb='hg pull; hg up; hg branch'
-
 alias g='git'
-
 alias vi='vim'
