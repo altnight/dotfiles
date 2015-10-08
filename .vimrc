@@ -1,36 +1,89 @@
 " =================================================
 " initialize
 " =================================================
-" initialize for NeoBundle
-" mkdir ~/.vim
-" git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/neobundle.vim
-set nocompatible
+" initialize NeoBundle
+" see https://github.com/Shougo/neobundle.vim
+"NeoBundle Scripts-----------------------------
 if has('vim_starting')
-  set runtimepath+=~/.vim/neobundle.vim
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim'))
+" Required:
+call neobundle#begin(expand('$HOME/.vim/bundle'))
 
-if $TMUX == ''
-    set clipboard+=unnamed
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here ---------------
+" toggle comment (NERDCommenter)
+NeoBundle 'scrooloose/nerdcommenter'
+" asynchronous
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'majutsushi/tagbar'
+" english
+NeoBundle 'ujihisa/neco-look'
+" zen coding
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+" molokai
+NeoBundle 'tomasr/molokai'
+" status line
+NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/landscape.vim'
+" quick run(command \r)
+NeoBundle 'thinca/vim-quickrun'
+" make tmp file (command :JunkfileOpen)
+NeoBundle 'Shougo/junkfile.vim'
+" VimFiler
+NeoBundle 'Shougo/vimfiler'
+" syntax
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tell-k/vim-autopep8.git'
+
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
 endif
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
 
 " =================================================
-"
+" general
 " =================================================
 syntax on
-filetype plugin on
+" filetype plugin on
 set encoding=utf-8
-
 " set indent to new line
 " set autoindent
-"
 set browsedir=buffer
 " use clipboard
 " required: vim configure +clipboard
 set clipboard=unnamed
-" complitation command mode
-set nocompatible
 " complitation command mode
 set wildmode=longest:full,full
 " don't make swapfile
@@ -63,177 +116,60 @@ set whichwrap=b,s,h,l,<,>,[,]
 set nowrapscan
 " highlight
 set hlsearch
-
-" escape highlight (command: esc, esc)
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
 " trip eol whitespace
 autocmd BufWritePre * :%s/\s\+$//ge
+" whitespace, if input tab
+autocmd FileType * set tabstop=2 shiftwidth=2
+autocmd FileType javascript set tabstop=2 shiftwidth=2
+autocmd FileType html set tabstop=2 shiftwidth=2
+autocmd FileType python set tabstop=4 shiftwidth=4
+" omni completion
+autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,htmldjango setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" 256 colors
+set t_Co=256
+" configure in .vimrc.local
+colorscheme molokai
+" display status line default
+set laststatus=2
+" highlight current line
+set cursorline
+"
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 
+" =================================================
+" map, alias
+" =================================================
 " move buffer (command: w)
 nnoremap <silent><Tab> <C-w>w
-
 " resize buffer (command: > or <)
 nnoremap <silent>> <C-w>>
 nnoremap <silent>< <C-w><
-"
 " open tab (command: M)
 nnoremap <silent>M :<C-u>:tabnew<CR>
 " move tab (command: m)
 nnoremap <silent>m :<C-u>:tabnext<CR>
 " open current buffer on new tab
 nnoremap <silent>,m :<C-u>:tab split<CR>
+" cd this buffer
+nnoremap <silent> cd :cd %:h<CR>
+" escape highlight (command: esc, esc)
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+" reopen .vimrc
+nnoremap <silent> ,oo :e $MYVIMRC<CR>
+nnoremap <silent> ,os :source $MYVIMRC<CR>
 
-" whitespace, if input tab
-autocmd FileType * set tabstop=2 shiftwidth=2
-autocmd FileType javascript set tabstop=2 shiftwidth=2
-autocmd FileType html set tabstop=2 shiftwidth=2
-autocmd FileType python set tabstop=4 shiftwidth=4
-autocmd FileType coffee set tabstop=4 shiftwidth=4
-autocmd FileType sass set tabstop=4 shiftwidth=4
-
-" =================================================
-" complitation
-" =================================================
-
-""""""""""""""""""""
-" NeoBundle, plugin manager like pathogen, vundle
-""""""""""""""""""""
-NeoBundleFetch 'git://github.com/Shougo/neobundle.vim.git'
-" install :NeoBundleInstall
+" install
 nnoremap <silent> ,nbi :<C-u>NeoBundleInstall<CR>
-" install & update :NeoBundleInstall!
+" install & update
 nnoremap <silent> ,nbI :<C-u>NeoBundleInstall!<CR>
-" clean :NeoBundleClean
+" clean
 nnoremap <silent> ,nbc :<C-u>NeoBundleClean<CR>
-
-" TODO: move
-" Lua for Mac
-if has('mac')
-  let $LUA_DLL='/usr/local/lib/liblua.dylib'
-endif
-
-""""""""""""""""""""
-" neocomplete
-""""""""""""""""""""
-NeoBundle 'Shougo/neocomplete'
-" enable neocomplcacehe
-let g:neocomplete#enable_at_startup = 1
-
-" keyword completion
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" dictionary complitation
-let g:neocomplete#sources#dictionary#dictionaries = {
-   \ 'default' : '',
-   \ 'css' : $HOME.'/dotfiles/vimfiles/css.dict',
-   \ 'less' : $HOME.'/dotfiles/vimfiles/css.dict',
-   \ 'sass' : $HOME.'/dotfiles/vimfiles/css.dict',
-   \ }
-" omni completion
-autocmd FileType css,less,sass setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,htmldjango setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
-
-""""""""""""""""""""
-" neosnippet
-""""""""""""""""""""
-" expand snippet
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-" snippet files
-let g:neosnippet#snippets_directory='~/dotfiles/vimfiles'
-
-" template
-autocmd BufNewFile *.py 0r $HOME/dotfiles/vimfiles/templates.py
-
-""""""""""""""""""""
-"
-""""""""""""""""""""
-" python virtualenv
-NeoBundle "git://github.com/jmcantrell/vim-virtualenv.git"
-
-" english
-NeoBundle 'https://github.com/ujihisa/neco-look.git'
-" TODO: word file or ext settings
-
-" ctags (use :Tlist)
-" if using mac, remove default ctags command
-NeoBundle 'taglist.vim'
-set tags=tags
-
-" zen coding
-NeoBundle 'https://github.com/mattn/emmet-vim.git'
-let g:user_emmet_expandabbr_key = '<c-e>'
-
-" replace in Quickfix
-NeoBundle "git://github.com/thinca/vim-qfreplace.git"
-nnoremap <silent>qf :Qfreplace<CR>
-
-" toggle comment (NERDCommenter)
-NeoBundle 'git://github.com/scrooloose/nerdcommenter.git'
-nmap ,c <Plug>NERDCommenterToggle
-vmap ,c <Plug>NERDCommenterToggle
-
-" =================================================
-" Syntax
-" =================================================
-" fix file indent
-nnoremap <silent>,in gg=G<CR>
-
-" JavaScript indent (command =G)
-NeoBundle 'git://github.com/vim-scripts/JavaScript-Indent.git'
-
-" Markdown
-NeoBundle 'git://github.com/tpope/vim-markdown.git'
-
-" reST (ft=rst)
-" TODO: if don't use, remove
-" NeoBundle 'git://github.com/vim-scripts/rest.vim.git'
-autocmd FileType rst setlocal foldmethod=marker
-
-" nginx
-NeoBundle 'nginx.vim'
-au BufRead,BufNewFile /etc/nginx/* set ft=nginx
-
-""""""""""""""""""""
-" syntastic
-""""""""""""""""""""
-" common syntax
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
-let g:syntastic_check_on_open=1
-let g:syntastic_python_checkers=['pep8', 'pyflakes']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['python', 'javascript', 'php'],
-                           \ 'passive_filetypes': [] }
-" =================================================
-" Filer
-" =================================================
-
-""""""""""""""""""""
-" VimFiler
-""""""""""""""""""""
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-" don't use default
-let g:vimfiler_as_default_explorer = 0
-let g:vimfiler_safe_mode_by_default = 0
-" start vimfiler ,e
-nnoremap <silent>,e :<C-u>VimFilerBufferDir<CR>
-
-""""""""""""""""""""
-" Unite
-""""""""""""""""""""
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-" if display .file, input "."
-" start input mode
-" let g:unite_enable_start_insert=1
 " buffer list
 nnoremap <silent> fb :<C-u>Unite buffer<CR>
 " file list
@@ -248,94 +184,68 @@ nnoremap <silent> fa :<C-u>execute
       \ 'file:'.fnameescape(expand('%:p:h'))
       \ 'file_rec:!:'.fnameescape(expand('%:p:h'))
       \ <CR>
+nmap ,c <Plug>NERDCommenterToggle
+vmap ,c <Plug>NERDCommenterToggle
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+nnoremap <silent>,e :<C-u>VimFilerBufferDir<CR>
+nmap <C-l> :TagbarToggle<CR>
 
-" unite grep
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-" unite grep(current cursor word)
-"nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-" call result recent unite grep word
-"nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
-
-" use ag(The Silver Searcher), if unite grep
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
+" =================================================
+" settings
+" =================================================
+" enable neocomplcacehe
+let g:neocomplete#enable_at_startup = 1
+" keyword completion
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
+" dictionary complitation
+let g:neocomplete#sources#dictionary#dictionaries = {
+   \ 'default' : '',
+   \ 'css' : $HOME.'/dotfiles/vimfiles/css.dict',
+   \ 'less' : $HOME.'/dotfiles/vimfiles/css.dict',
+   \ 'sass' : $HOME.'/dotfiles/vimfiles/css.dict',
+   \ }
 
-NeoBundle 'https://github.com/Shougo/neomru.vim'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" snippet files
+let g:neosnippet#snippets_directory='~/dotfiles/vimfiles'
+" don't use default
+let g:vimfiler_as_default_explorer = 0
+let g:vimfiler_safe_mode_by_default = 0
 
-" Ag.vim
-" install mac: brew install the_silver_searcher
-" install ubuntu: https://github.com/ggreer/the_silver_searcher から build
-" :Ag [options] {patterns} [{directory}]
-NeoBundle 'git://github.com/rking/ag.vim.git'
-let g:agprg="ag --nocolor --nogroup --column"
+let g:syntastic_check_on_open=1
+let g:syntastic_python_checkers=['pep8', 'pyflakes']
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['python', 'javascript'],
+                           \ 'passive_filetypes': [] }
 
-" cd this buffer
-nnoremap <silent> cd :cd %:h<CR>
-
-" :Calender
-NeoBundle 'git://github.com/mattn/calendar-vim.git'
-
-" =================================================
-" others
-" =================================================
-" asynchronous
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
-" share other vims
-NeoBundle 'yanktmp.vim'
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
-
-" quick run(command \r)
-NeoBundle 'git://github.com/thinca/vim-quickrun.git'
-
-" make tmp file (command :JunkfileOpen)
-NeoBundle 'git://github.com/Shougo/junkfile.vim.git'
-" let g:junkfile#directory=path/to/local/.vim_junk"
-
-" =================================================
-" colorscheme
-" =================================================
-" molokai
-NeoBundle 'tomasr/molokai'
-" pyte
-NeoBundle 'therubymug/vim-pyte'
-" solarized
-NeoBundle 'altercation/vim-colors-solarized'
-" zenburn
-NeoBundle 'vim-scripts/Zenburn'
-" :Unite colorscheme -auto-preview
-NeoBundle 'ujihisa/unite-colorscheme'
-
-" 256 colors
-set t_Co=256
-" molocak, pyte, peachpuff
-" colorscheme molokai, pyte, peachpuff, hybrid-light
-" configure in .vimrc.local
-
-" status line
-NeoBundle 'bling/vim-airline'
-NeoBundle 'itchyny/landscape.vim'
 let g:airline_theme="landscape"
-" display status line default
-set laststatus=2
+let g:user_emmet_expandabbr_key = '<c-e>'
+" let g:junkfile#directory=path/to/local/.vim_junk"
+" ctags
+set tags=tags
 
-" highlight current line
-set cursorline
-" under line
-"autocmd VimEnter,ColorScheme * : highlight CursorLine cterm=underline ctermbg=234
-
-filetype plugin indent on
-
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
+let g:tagbar_left = 1
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Headline'
+    \ ],
+    \ 'sort' : 0,
+\ }
+let g:tagbar_type_rst = {
+    \ 'ctagstype': 'rst',
+    \ 'ctagsbin' : '/path/to/rst2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
