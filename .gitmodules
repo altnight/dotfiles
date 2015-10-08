@@ -1,9 +1,3 @@
 [submodule "vimfiles/neobundle.vim"]
 	path = vimfiles/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
-[submodule ".zsh/percol"]
-	path = .zsh/percol
-	url = https://github.com/mooz/percol.git
-[submodule ".zsh/zaw"]
-	path = .zsh/zaw
-	url = https://github.com/zsh-users/zaw
