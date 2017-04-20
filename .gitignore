@@ -1,3 +1,4 @@
 *.swp
-*.swp
 .DS_Store
+.config/fish/fishd.*
+.config/fish/functions/*

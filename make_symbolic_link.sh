@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .hgrc .vimrc)
+DOT_FILES=( .hgrc .vimrc .config)
 
 for file in ${DOT_FILES[@]}
   do
