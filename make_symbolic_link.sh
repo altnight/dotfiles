@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .hgrc .vimrc .tmux.conf .zshrc .zsh)
+DOT_FILES=( .hgrc .vimrc .tmux.conf)
 
 ln -s $HOME/dotfiles/vimfiles/neobundle.vim $HOME/.vim/neobundle.vim
 
