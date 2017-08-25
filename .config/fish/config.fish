@@ -8,7 +8,7 @@ function peco_select_history
     set peco_flags --layout=top-down --query "$argv"
   end
 
-  history|peco $peco_flags|read foo
+  history | sort | uniq | peco $peco_flags | read foo
 
   if [ $foo ]; commandline $foo
   else
