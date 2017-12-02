@@ -18,21 +18,13 @@ call dein#begin('~/.dein')
 " Required:
 call dein#add('Shougo/dein.vim')
 
-" toggle comment (NERDCommenter)
-call dein#add('scrooloose/nerdcommenter')
-" english
-call dein#add('ujihisa/neco-look')
 " zen coding
 call dein#add('mattn/emmet-vim')
-"
-call dein#add('ctrlpvim/ctrlp.vim')
 " color scheme molokai
 call dein#add('tomasr/molokai')
 " status line
 call dein#add('bling/vim-airline')
 call dein#add('itchyny/landscape.vim')
-" quick run(command \r)
-call dein#add('thinca/vim-quickrun')
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
@@ -121,23 +113,9 @@ nnoremap <silent><Tab> <C-w>w
 " escape highlight (command: esc, esc)
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-nmap ,c <Plug>NERDCommenterToggle
-vmap ,c <Plug>NERDCommenterToggle
-
 " =================================================
 " plugin settings
 " =================================================
 
 let g:airline_theme="landscape"
 let g:user_emmet_expandabbr_key = '<c-e>'
-
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_root_markers = ['Gemfile', 'pom.xml', 'build.xml']
-let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|(Library))$',
-  \ 'file': '\v\.(exe|so|dll|mp3|mp4|jpeg|jpg|png|gif|pdf|wav|ogg|m4a|vbox|vmdk|pyc)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
