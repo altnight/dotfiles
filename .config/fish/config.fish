@@ -1,14 +1,9 @@
 set -x PATH $HOME/.homebrew/bin $PATH
 
 # https://github.com/oh-my-fish/plugin-peco/blob/master/functions/peco_select_history.fish
-function peco_select_history
-  if test (count $argv) = 0
-    set peco_flags --layout=top-down
-  else
-    set peco_flags --layout=top-down --query "$argv"
-  end
+function select_history
 
-  history | sort | uniq | peco $peco_flags | read foo
+  history | sort | uniq | fzf --layout=reverse --height 50% | read foo
 
   if [ $foo ]; commandline $foo
   else
@@ -35,6 +30,6 @@ function peco_z
 end
 
 function fish_user_key_bindings
-  bind \cr peco_select_history
+  bind \cr select_history
   bind \cq peco_z
 end
