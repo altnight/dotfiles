@@ -6,7 +6,6 @@ color =
 graphlog =
 pager =
 record =
-mercurial_keyring =
 strip =
 histedit =
 
