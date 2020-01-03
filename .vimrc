@@ -1,48 +1,18 @@
 " =================================================
-" initialize
+" prepare
 " =================================================
-" initialize dein.vim
-" see https://github.com/Shougo/dein.vim
-
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible " Be iMproved
-endif
-
-set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('~/.dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-" zen coding
-call dein#add('mattn/emmet-vim')
-" color scheme molokai
-call dein#add('tomasr/molokai')
-" status line
-call dein#add('bling/vim-airline')
-call dein#add('itchyny/landscape.vim')
-
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-"End dein Scripts-------------------------
+" mkdir -p ~/.vim/pack/package/start
+" cd ~/.vim/pack/package/start
+" git clone https://github.com/tomasr/molokai.git
+" git clone https://github.com/vim-airline/vim-airline.git
+" git clone https://github.com/itchyny/landscape.vim.git
 
 " =================================================
 " general
 " =================================================
+
 syntax on
+
 " filetype plugin on
 set encoding=utf-8
 " set indent to new line
@@ -116,6 +86,11 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " =================================================
 " plugin settings
 " =================================================
-
 let g:airline_theme="landscape"
-let g:user_emmet_expandabbr_key = '<c-e>'
+
+" =================================================
+" load local
+" =================================================
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
